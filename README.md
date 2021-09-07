@@ -1,7 +1,14 @@
 <h1>PyStock - Backend</h1>
 
+<h4>Integrantes</h4>
+- Luis Favatier<br>
+- Lautaro Blanco<br>
+- Elizabeth Gasañol<br>
+- Martin Serna<br>
+
+
 <h4>Backend</h4>
-https://github.com/BlancoLautaro01/pystock-back
+- https://github.com/BlancoLautaro01/pystock-back
 <br>
 <h4>Frontend</h4>
 - https://github.com/BlancoLautaro01/pystock-front
