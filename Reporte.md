@@ -7,11 +7,11 @@
 <br>
 
 <h4>Stack Tecnologico:</h4>
-<h6>Backend</h6>
+<h5>Backend</h5>
 - Python
 - MongoDB
 
-<h6>Frontend</h6>
+<h5>Frontend</h5>
 - ReactJs
 
 <h4>Gestión y Calidad:</h4>
