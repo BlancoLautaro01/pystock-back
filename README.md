@@ -11,7 +11,6 @@
 - https://github.com/BlancoLautaro01/pystock-back/blob/main/Reporte.md
 <br>
 
-<br>
 <h4>Trello Board</h4>
 - https://trello.com/b/iYqTUumc/pystock
 <br>
