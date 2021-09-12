@@ -1,4 +1,5 @@
 <h1>PyStock</h1>
+Ultima edicion: 12/07/21
 
 <h4>Elevator Pitch:</h4>
 - Para tu negocio pequeño que necesita control de stock y ventas sin complicaciones,
