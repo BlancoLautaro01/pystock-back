@@ -8,13 +8,13 @@
 
 <h4>Stack Tecnologico:</h4>
 <h5>Backend</h5>
-- Python
-- MongoDB
+- Python<br>
+- MongoDB<br>
 
 <h5>Frontend</h5>
-- ReactJs
+- ReactJs<br>
 
 <h4>Gestión y Calidad:</h4>
-- Trello
-- GitHub
-- PyTest
+- Trello<br>
+- GitHub<br>
+- PyTest<br>
