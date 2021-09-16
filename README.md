@@ -5,7 +5,13 @@
 - Lautaro Blanco<br>
 - Elizabeth Gasañol<br>
 - Martin Serna<br>
-
+  
+<h4>Elevator Pitch:</h4>
+- Para tu negocio pequeño que necesita control de stock y ventas sin complicaciones,
+ PyStock es una aplicación web que te permite llevar cuenta de tu inventario y manejar tus ventas
+ que a diferencia de otros productos es super simple y 100% gratuito.
+<br>
+  
 <br>
 <h4>Reporte</h4>
 - https://github.com/BlancoLautaro01/pystock-back/blob/main/REPORTE.md
@@ -24,5 +30,5 @@
 <br>
 
 <h4>URL del Producto</h4>
-- 
+- A Definir
 <br>
