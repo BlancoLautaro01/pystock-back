@@ -21,7 +21,6 @@
 - https://trello.com/b/iYqTUumc/pystock
 <br>
 
-<br>
 <h4>Story Mapping</h4>
 - https://miro.com/app/board/o9J_lwwfVPo=/
 <br>
