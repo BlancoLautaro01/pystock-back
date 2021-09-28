@@ -14,7 +14,7 @@
   
 <br>
 <h4>Reporte</h4>
-- https://github.com/BlancoLautaro01/pystock-back/blob/main/REPORTE.md
+- https://github.com/BlancoLautaro01/pystock-back/blob/main/Reportes/template.md
 <br>
 
 <h4>Trello Board</h4>
