@@ -16,7 +16,7 @@ def users():
 
 @app.route('/users',methods = ["POST"])
 def create_user():
-    return jsonify(insert_user(request.form["name"]))
+    return jsonify(insert_user(request.form["username"], request.form["password"]))
 
 if __name__ == '__main__':
     app.run(debug=True, port=4000)

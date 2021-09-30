@@ -11,7 +11,8 @@ def get_users():
         ret.append({"username": user["username"]})
     return ret
     
-def insert_user(username):
-    users_collection.insert({"username": username})
+def insert_user(username, password):
+    users_collection.insert_one({"username": username, "password": password})
+    return {"result": "OK"}
 
 print (get_users())
