@@ -1,10 +1,10 @@
 import userMongoDAO as dao
 
 
-def checkLogin(username, password):
-    loginAcepted = False
-    if dao.user_exist(username):
-        result = dao.get_credentials(username)
-        if password == result["password"]:
-            loginAcepted = True
-    return loginAcepted
+def check_login(email, password):
+    login_accepted = False
+    if dao.user_exist(email):
+        pass_word = dao.get_password(email)
+        if password == pass_word:
+            login_accepted = True
+    return login_accepted

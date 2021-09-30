@@ -6,27 +6,30 @@ db = client['pystock']
 users_collection = db['users']
 
 
-def user_exist(username):
-    result = users_collection.find_one({"username": username})
+def user_exist(email):
+    result = users_collection.find_one({"username": email})
     return result is not None
 
 
-def insert_user(username, password):
-    if not user_exist(username):
-        users_collection.insert_one({"username": username, "password": password})
+def insert_user(email, password):
+    if not user_exist(email):
+        users_collection.insert_one({"email": email, "password": password})
 
 
-
-def get_credentials(username):
-    return users_collection.find_one({"username": username})
-
+def get_password(email):
+    return users_collection.find_one({"email": email})["password"]
 
 
+def get_id(email):
+    query = users_collection.find_one({"email": email})
+    return query["_id"]
 
 
+def main():
+    print(get_id("luis"))
 
 
-
+main()
 
 # machete para mi, para mas adelante.
 # delete_one para borrar
