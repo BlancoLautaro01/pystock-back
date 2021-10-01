@@ -6,7 +6,7 @@ db = client['pystock']
 users_collection = db['users']
 
 
-def user_exist(email):
+def user_exist(email) -> bool:
     result = users_collection.find_one({"email": email})
     return result is not None
 

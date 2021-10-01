@@ -1,7 +1,7 @@
-import user_mongo_dao as dao
+from app.dao import user_mongo_dao as dao
 
 
-def check_login(email, password):
+def check_login(email, password) -> bool:
     login_accepted = False
     if dao.user_exist(email):
         pass_word = dao.get_password(email)

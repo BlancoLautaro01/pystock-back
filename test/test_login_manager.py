@@ -1,5 +1,4 @@
-import pytest
-from app.user_mongo_dao import drop_users, insert_user
+from app.dao.user_mongo_dao import drop_users, insert_user
 from app.login_manager import *
 
 email = "luis@gmail.com"

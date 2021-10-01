@@ -1,5 +1,4 @@
-from app.user_mongo_dao import *
-import pytest
+from app.dao.user_mongo_dao import *
 
 
 def before_each():
