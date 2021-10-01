@@ -7,7 +7,7 @@ users_collection = db['users']
 
 
 def user_exist(email):
-    result = users_collection.find_one({"username": email})
+    result = users_collection.find_one({"email": email})
     return result is not None
 
 
@@ -25,8 +25,12 @@ def get_id(email):
     return query["_id"]
 
 
+def drop_users():
+    users_collection.drop()
+
 def main():
-    print(get_id("luis"))
+    print(user_exist("luis"))
+#    print(get_id("luis"))
 
 
 main()
