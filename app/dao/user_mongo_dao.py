@@ -27,13 +27,3 @@ def get_id(email):
 
 def drop_users():
     users_collection.drop()
-
-def main():
-    print(user_exist("luis"))
-#    print(get_id("luis"))
-
-
-main()
-
-# machete para mi, para mas adelante.
-# delete_one para borrar

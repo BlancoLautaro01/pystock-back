@@ -22,4 +22,5 @@ def main():
     un_usuario.username = "carlitos"
     print(f"El usuario es {un_usuario.username} con contraseña {un_usuario.password}")
 
+
 main()

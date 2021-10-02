@@ -21,6 +21,7 @@ def users():
 def create_user():
     return jsonify(insert_user(request.form["username"], request.form["password"]))
 
+
 @app.route('/login', methods=["POST"])
 def login():
      #retorno de la funcion
