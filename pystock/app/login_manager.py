@@ -1,4 +1,4 @@
-from app.dao import user_mongo_dao as dao
+from pystock.app.dao import user_mongo_dao as dao
 
 
 def check_login(email, password):

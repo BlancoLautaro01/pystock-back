@@ -1,5 +1,5 @@
-from app.dao.user_mongo_dao import drop_users, insert_user
-from app.login_manager import *
+from pystock.app.dao.user_mongo_dao import drop_users, insert_user
+from pystock.app.login_manager import *
 
 email = "luis@gmail.com"
 password = "12345"
@@ -22,7 +22,7 @@ def test_check_login_is_ok():
 
 def test_check_login_is_not_ok_wrong_email():
     before_each()
-    assert check_login("unEmailInexistente@gmail.com", password)
+    assert not check_login("unEmailInexistente@gmail.com", password)
     after_each()
 
 

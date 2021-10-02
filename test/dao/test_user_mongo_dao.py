@@ -1,4 +1,4 @@
-from app.dao.user_mongo_dao import *
+from pystock.app.dao.user_mongo_dao import *
 
 
 def before_each():
@@ -22,7 +22,7 @@ def test_insert_user():
     assert not user_exist("nomail@mail.com")
     insert_user("nomail@mail.com","1234")
     assert user_exist("nomail@mail.com")
-    afeter_each()
+    after_each()
 
 
 def test_get_password():
