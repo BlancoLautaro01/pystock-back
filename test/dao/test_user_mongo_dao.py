@@ -17,11 +17,21 @@ def test_user_exist():
     after_each()
 
 
-def test_insert_user():
+def test_insert_user_case_new_user():
     before_each()
     assert not user_exist("nomail@mail.com")
     insert_user("nomail@mail.com","1234")
     assert user_exist("nomail@mail.com")
+    after_each()
+
+def test_insert_user_case_allready_exist_user():
+    before_each()
+    assert not user_exist("nomail@mail.com")
+    insert_user("nomail@mail.com","1234")
+    assert user_exist("nomail@mail.com")
+    insert_user("nomail@mail.com","otraContraseña")
+    assert get_password("nomail@mail.com") == "1234"
+    assert get_password("nomail@mail.com") != "otraContraseña"
     after_each()
 
 
