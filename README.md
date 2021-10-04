@@ -14,7 +14,7 @@
   
 <br>
 <h4>Reportes</h4>
-- https://github.com/BlancoLautaro01/pystock-back/blob/main/Reportes/
+- https://github.com/BlancoLautaro01/pystock-back/tree/main/reportes
 <br>
 
 <h4>Trello Board</h4>
