@@ -3,7 +3,7 @@ from flask import Flask
 from flask_cors import CORS
 
 from pystock.app.login_manager import *
-from pystock.app.dao.user_mongo_dao import get_id, insert_user, get_password, user_exist
+from pystock.app.dao.user_mongo_dao import get_id
 from pystock.app.token_manager import generate_token
 
 
@@ -18,15 +18,14 @@ def test():
 
 @app.route('/login', methods=["POST"])
 def login():
-    credentials = request.form
+    credentials = request.json
     email = credentials["email"]
     password = credentials["password"]
 
-    if check_login(email, password):
-        response = {"id": get_id(email), "token": generate_token()}
-    else:
-        response = {"id": "", "token": ""}
-    return jsonify(response)
+    if not check_login(email, password):
+        return "User not fond", 500
+
+    return {"id": get_id(email), "token": generate_token()}
 
 
 app.run(debug=True, port=4000)
