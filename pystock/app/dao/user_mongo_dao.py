@@ -21,9 +21,7 @@ def get_password(email):
 
 
 def get_id(email):
-    return users_collection.find_one({"email": email})["_id"]
-
-
+    return str(users_collection.find_one({"email": email})["_id"])
 
 def drop_users():
     users_collection.drop()

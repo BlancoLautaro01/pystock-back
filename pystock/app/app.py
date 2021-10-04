@@ -21,27 +21,18 @@ def test():
 @app.route('/login', methods=["POST"])
 def login():
     #Linea para poder probar con un usuario
-    insert_user("email@pueba.com", "1234")
+    insert_user("email@prueba.com", "1234")
 
     credentials = request.form
     email = credentials["email"]
     password = credentials["password"]
 
-    print("pk1@")
-    print(email)
-    print(password)
-    print("exist " + user_exist(email))
-    print(check_login(email, password))
-    print(get_password(email))
-    print(get_id(email))
-    print("pk@2")
-    """
     if check_login(email, password):
         response = {"id":get_id(email), "token" :generate_token()}
     else:
         response = {"Usuario o contraseña no validos"}
     return jsonify(response)
-    """
+
 
 
 app.run(debug=True, port=4000)
