@@ -34,11 +34,6 @@ def get_users():
 def drop_users():
     users_collection.drop()
 
-def main():
-    insert_user("admin2@pystock.com", "1234")
-    insert_user("admin3@pystock.com", "1234")
-    print(get_users())
-main()
 
 # Usuario base
 insert_user("admin@pystock.com", "1234")
