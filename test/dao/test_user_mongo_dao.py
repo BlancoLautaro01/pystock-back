@@ -70,6 +70,36 @@ def test_get_users_case_3_users():
     assert users[2]["email"] == "email3@mail.com"
 
     after_each()
+
+
+def test_delete_user_case_user_exist():
+    before_each()
+    email = "warmi@gmail.com"
+
+    assert not user_exist(email)
+
+    insert_user(email, "1234")
+    assert user_exist(email)
+
+    delete_user(email)
+
+    assert not user_exist(email)
+
+    after_each()
+
+
+def test_delete_user_case_user_not_exist():
+    before_each()
+    email = "warmi@gmail.com"
+
+    assert not user_exist(email)
+
+    delete_user(email)
+
+    assert not user_exist(email)
+
+    after_each()
+
 """
 def test_get_id():
     before_each()

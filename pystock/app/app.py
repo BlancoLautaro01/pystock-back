@@ -3,7 +3,7 @@ from flask import Flask
 from flask_cors import CORS
 
 from pystock.app.login_manager import *
-from pystock.app.dao.user_mongo_dao import get_id, get_users, insert_user, user_exist
+from pystock.app.dao.user_mongo_dao import get_id, get_users, insert_user, user_exist, delete_user
 from pystock.app.token_manager import generate_token
 
 app = Flask(__name__)
@@ -17,7 +17,6 @@ def test():
 
 @app.route('/login', methods=["POST"])
 def login():
-
     credentials = request.json
     email = credentials["email"]
     password = credentials["password"]
@@ -35,7 +34,6 @@ def users():
 
 @app.route('/create_user', methods=["POST"])
 def create_user():
-
     credentials = request.form
     email = credentials["email"]
     password = credentials["password"]
@@ -44,6 +42,16 @@ def create_user():
         return "User allready exist", 500
     insert_user(email, password)
     return "A new user has been created with email: " + email, 200
+
+
+@app.route('/user', methods=["DELETE"])
+def delete_a_user():
+    credentials = request.form
+    email = credentials["email"]
+    delete_user(email)
+    return "User with email: " + email + " was deleted", 200
+
+
 
 
 app.run(debug=True, port=4000)
