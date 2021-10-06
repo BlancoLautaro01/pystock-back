@@ -43,7 +43,7 @@ def create_user():
     if user_exist(email):
         return "User allready exist", 500
     insert_user(email, password)
-    return "New user was created with email: " + email, 200
+    return "A new user has been created with email: " + email, 200
 
 
 app.run(debug=True, port=4000)
