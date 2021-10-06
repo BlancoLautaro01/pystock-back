@@ -24,14 +24,21 @@ def get_id(email):
     return str(users_collection.find_one({"email": email})["_id"])
 
 
+def get_users():
+
+    users_list = []
+    for user in users_collection.find({}, {"_id": 0, "password": 0}):
+        users_list.append({"email": user["email"]})
+    return users_list
+
 def drop_users():
     users_collection.drop()
 
-
-def insert_user_for_testing(id, email, password):
-    if not user_exist(email):
-        users_collection.insert_one({"_id": id, "email": email, "password": password})
-
+def main():
+    insert_user("admin2@pystock.com", "1234")
+    insert_user("admin3@pystock.com", "1234")
+    print(get_users())
+main()
 
 # Usuario base
 insert_user("admin@pystock.com", "1234")

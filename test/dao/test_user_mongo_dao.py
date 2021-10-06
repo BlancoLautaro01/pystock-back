@@ -41,6 +41,35 @@ def test_get_password():
     assert get_password("nomail@mail.com") == "1234"
     after_each()
 
+
+def test_get_users_case_no_users():
+    before_each()
+    assert len(get_users()) == 0
+    after_each()
+
+def test_get_users_case_3_users():
+    before_each()
+    users = []
+    insert_user("email1@mail.com", "1234.1")
+
+    users = get_users()
+    assert len(users) == 1
+    assert users[0]["email"] == "email1@mail.com"
+
+    insert_user("email2@mail.com", "1234.2")
+    users = get_users()
+    assert len(users) == 2
+    assert users[0]["email"] == "email1@mail.com"
+    assert users[1]["email"] == "email2@mail.com"
+
+    insert_user("email3@mail.com", "1234.3")
+    users = get_users()
+    assert len(users) == 3
+    assert users[0]["email"] == "email1@mail.com"
+    assert users[1]["email"] == "email2@mail.com"
+    assert users[2]["email"] == "email3@mail.com"
+
+    after_each()
 """
 def test_get_id():
     before_each()

@@ -3,8 +3,9 @@ from flask import Flask
 from flask_cors import CORS
 
 from pystock.app.login_manager import *
-from pystock.app.dao.user_mongo_dao import get_id
+from pystock.app.dao.user_mongo_dao import get_id, get_users
 from pystock.app.token_manager import generate_token
+
 
 
 app = Flask(__name__)
@@ -27,5 +28,9 @@ def login():
 
     return {"id": get_id(email), "token": generate_token()}
 
+
+@app.route('/users')
+def users():
+    return jsonify(get_users())
 
 app.run(debug=True, port=4000)
