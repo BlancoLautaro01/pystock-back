@@ -27,31 +27,29 @@ def login():
     return {"id": get_id(email), "token": generate_token()}
 
 
-@app.route('/users')
+@app.route('/getUsers')
 def users():
-    return jsonify(get_users())
+    return jsonify(get_users()), 200
 
 
-@app.route('/create_user', methods=["POST"])
+@app.route('/createUser', methods=["POST"])
 def create_user():
-    credentials = request.form
+    credentials = request.json
     email = credentials["email"]
     password = credentials["password"]
 
     if user_exist(email):
         return "User allready exist", 500
     insert_user(email, password)
-    return "A new user has been created with email: " + email, 200
+    return "A new user has been created with email: " + email, 201
 
 
-@app.route('/user', methods=["DELETE"])
+@app.route('/deleteUser', methods=["DELETE"])
 def delete_a_user():
-    credentials = request.form
+    credentials = request.json
     email = credentials["email"]
     delete_user(email)
-    return "User with email: " + email + " was deleted", 200
-
-
+    return "User with email: " + email + " has been deleted", 204
 
 
 app.run(debug=True, port=4000)

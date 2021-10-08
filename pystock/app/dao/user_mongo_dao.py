@@ -31,8 +31,10 @@ def get_users():
         users_list.append({"email": user["email"]})
     return users_list
 
+
 def delete_user(email):
     users_collection.delete_one({"email": email})
+
 
 def drop_users():
     users_collection.drop()
