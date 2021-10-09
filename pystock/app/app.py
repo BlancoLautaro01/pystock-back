@@ -32,24 +32,22 @@ def users():
     return jsonify(get_users()), 200
 
 
-@app.route('/createUser', methods=["POST"])
+@app.route('/setUser', methods=["POST"])
 def create_user():
     credentials = request.json
     email = credentials["email"]
     password = credentials["password"]
 
     if user_exist(email):
-        return "User allready exist", 500
-    insert_user(email, password)
-    return "A new user has been created with email: " + email, 201
+        return "User already exist", 500
+    user = insert_user(email, password)
+    return jsonify(user), 201
 
 
-@app.route('/deleteUser', methods=["DELETE"])
-def delete_a_user():
-    credentials = request.json
-    email = credentials["email"]
-    delete_user(email)
-    return "User with email: " + email + " has been deleted", 204
+@app.route('/deleteUser/<user_id>', methods=["DELETE"])
+def delete_a_user(user_id):
+    delete_user(user_id)
+    return "Deleted", 204
 
 
 app.run(debug=True, port=4000)
