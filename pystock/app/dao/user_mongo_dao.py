@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 mongo_uri = 'mongodb://localhost'
 client = MongoClient(mongo_uri)
@@ -11,11 +12,6 @@ def user_exist(email):
     return result is not None
 
 
-def insert_user(email, password):
-    if not user_exist(email):
-        users_collection.insert_one({"email": email, "password": password})
-
-
 def get_password(email):
     return users_collection.find_one({"email": email})["password"]
 
@@ -24,16 +20,28 @@ def get_id(email):
     return str(users_collection.find_one({"email": email})["_id"])
 
 
+def insert_user(email, password):
+    if not user_exist(email):
+        response = users_collection.insert_one({"email": email, "password": password})
+        return({
+            "id": str(response.inserted_id),
+            "email": email
+        })
+
+
 def get_users():
+    users = []
+    for user in users_collection.find({}):
+        users.append(
+            {
+                "id": str(user["_id"]),
+                "email": user["email"]
+            })
+    return users
 
-    users_list = []
-    for user in users_collection.find({}, {"_id": 0, "password": 0}):
-        users_list.append({"email": user["email"]})
-    return users_list
 
-
-def delete_user(email):
-    users_collection.delete_one({"email": email})
+def delete_user(user_id):
+    users_collection.delete_one({"_id": ObjectId(user_id)})
 
 
 def drop_users():
