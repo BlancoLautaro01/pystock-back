@@ -12,14 +12,6 @@ def user_exist(email):
     return result is not None
 
 
-def get_password(email):
-    return users_collection.find_one({"email": email})["password"]
-
-
-def get_id(email):
-    return str(users_collection.find_one({"email": email})["_id"])
-
-
 def insert_user(email, password):
     if not user_exist(email):
         response = users_collection.insert_one({"email": email, "password": password})
@@ -42,6 +34,19 @@ def get_users():
 
 def delete_user(user_id):
     users_collection.delete_one({"_id": ObjectId(user_id)})
+
+
+# Funciones para tests.
+def delete_user_by_email(email):
+    users_collection.delete_one({"email": email})
+
+
+def get_password(email):
+    return users_collection.find_one({"email": email})["password"]
+
+
+def get_id(email):
+    return str(users_collection.find_one({"email": email})["_id"])
 
 
 def drop_users():
