@@ -1,4 +1,4 @@
-from pystock.app.dao.user_mongo_dao import *
+from pystock.app.services.user_service import *
 
 
 def before_each():

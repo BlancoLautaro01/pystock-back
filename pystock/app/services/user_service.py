@@ -1,10 +1,8 @@
-from pymongo import MongoClient
 from bson.objectid import ObjectId
+from pystock.app.config import MONGO_SERVICE
 
-mongo_uri = 'mongodb://localhost'
-client = MongoClient(mongo_uri)
-db = client['pystock']
-users_collection = db['users']
+
+users_collection = MONGO_SERVICE.get_users()
 
 
 def user_exist(email):
@@ -51,7 +49,3 @@ def get_id(email):
 
 def drop_users():
     users_collection.drop()
-
-
-# Usuario base
-insert_user("admin@pystock.com", "1234")
