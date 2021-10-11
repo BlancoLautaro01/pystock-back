@@ -25,7 +25,7 @@ def test_insert_user_case_new_user():
     after_each()
 
 
-def test_insert_user_case_allready_exist_user():
+def test_insert_user_case_already_exist_user():
     before_each()
     assert not user_exist("nomail@mail.com")
     insert_user("nomail@mail.com","1234")
@@ -51,7 +51,6 @@ def test_get_users_case_no_users():
 
 def test_get_users_case_3_users():
     before_each()
-    users = []
     insert_user("email1@mail.com", "1234.1")
 
     users = get_users()
@@ -75,6 +74,22 @@ def test_get_users_case_3_users():
 
 
 def test_delete_user_case_user_exist():
+    before_each()
+    email = "warmi@gmail.com"
+
+    assert not user_exist(email)
+
+    insert_user(email, "1234")
+    assert user_exist(email)
+
+    delete_user_by_email(email)
+
+    assert not user_exist(email)
+
+    after_each()
+
+
+def test_delete_user_by_email_case_user_exist():
     before_each()
     email = "warmi@gmail.com"
 
