@@ -79,10 +79,10 @@ def test_delete_user_case_user_exist():
 
     assert not user_exist(email)
 
-    insert_user(email, "1234")
+    user = insert_user(email, "1234")
     assert user_exist(email)
 
-    delete_user_by_email(email)
+    delete_user(user["id"])
 
     assert not user_exist(email)
 
