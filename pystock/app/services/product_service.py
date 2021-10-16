@@ -5,19 +5,20 @@ from pystock.app.config import MONGO_SERVICE
 products_collection = MONGO_SERVICE.get_products()
 
 
-def product_exist(id_code):
-    result = products_collection.find_one({"id_code": id_code})
+def product_exist(cod):
+    result = products_collection.find_one({"cod": cod})
     return result is not None
 
 
-def insert_product(id_code, name, price, description):
-    if not product_exist(id_code):
-        response = products_collection.insert_one({"id_code": id_code,
+def insert_product(cod, name, price, description):
+    if not product_exist(cod):
+        response = products_collection.insert_one({"cod": cod,
                                                    "name": name,
                                                    "price": price,
                                                    "description": description})
         return({
             "id": str(response.inserted_id),
+            "cod": cod,
             "name": name,
             "price": price,
             "description": description
@@ -26,10 +27,3 @@ def insert_product(id_code, name, price, description):
 
 def drop_products():
     products_collection.drop()
-
-
-def main():
-
-    print("Haciendo algo")
-
-main()
