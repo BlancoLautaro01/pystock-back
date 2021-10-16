@@ -19,8 +19,8 @@ def test_product_exist():
 
 def test_insert_product():
     before_each()
-    insert_product("1", "uNnombreProducto", "precioProducto", "unaDescripcion")
-    assert product_exist("1")
+    insert_product("COD1", "uNnombreProducto", "precioProducto", "unaDescripcion")
+    assert product_exist("COD1")
     after_each()
 
 
@@ -38,4 +38,13 @@ def test_get_products_case_2_products():
     assert products[0]["cod"] == "COD1"
     assert products[1]["cod"] == "COD2"
 
+    after_each()
+
+
+def test_delete_product():
+    before_each()
+    product = insert_product("COD1", "uNnombreProducto", "precioProducto", "unaDescripcion")
+    assert product_exist("COD1")
+    delete_product(product["id"])
+    assert not product_exist("COD1")
     after_each()
