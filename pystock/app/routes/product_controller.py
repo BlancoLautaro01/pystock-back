@@ -11,11 +11,16 @@ def set_product():
     code = credentials["cod"]
     name = credentials["name"]
     price = credentials["price"]
-    description = credentials["desc"]
+    desc = credentials["desc"]
 
     if product_exist(code):
         return "Product with the same id already exist", 400
 
-    product = insert_product(code, name, price, description)
+    product = insert_product(code, name, price, desc)
 
     return jsonify(product), 201
+
+
+@product_controller.route('/getProducts')
+def products():
+    return jsonify(get_products()), 200

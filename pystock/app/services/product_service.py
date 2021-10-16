@@ -10,19 +10,33 @@ def product_exist(cod):
     return result is not None
 
 
-def insert_product(cod, name, price, description):
+def insert_product(cod, name, price, desc):
     if not product_exist(cod):
         response = products_collection.insert_one({"cod": cod,
                                                    "name": name,
                                                    "price": price,
-                                                   "description": description})
+                                                   "desc": desc})
         return({
             "id": str(response.inserted_id),
             "cod": cod,
             "name": name,
             "price": price,
-            "description": description
+            "desc": desc
         })
+
+
+def get_products():
+    products = []
+    for product in products_collection.find({}):
+        products.append(
+            {
+                "id": str(product["_id"]),
+                "cod": product["cod"],
+                "name": product["name"],
+                "desc": product["desc"],
+                "price": product["price"],
+            })
+    return products
 
 
 def drop_products():
