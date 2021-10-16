@@ -1,0 +1,36 @@
+*****************************
+Metodo tipo POST a  "/login".
+*****************************
+Request:{
+            "email":String,
+            "password":String
+        }
+
+:response:{
+                "id": Int
+                "token": String
+          }
+Nota: el id es el del usuario.
+
+
+*******************************
+Metodo tipo GET a  "/getUsers".
+*******************************
+La respuesta es una lista de usurios
+cada elemento esta compuesto por id y email.
+Si no hay elementos devuelve una lista vacia.
+
+
+******************************
+Metodo tipo POST a  "/setUser.
+******************************
+Request:{
+            "email":String,
+            "password":String
+        }
+
+:response:{
+                "id": Int
+                "token": String
+          }
+Nota: el id es el del usuario.
