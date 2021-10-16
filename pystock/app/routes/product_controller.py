@@ -24,3 +24,9 @@ def set_product():
 @product_controller.route('/getProducts')
 def products():
     return jsonify(get_products()), 200
+
+
+@product_controller.route('/deleteProduct/<product_id>', methods=["DELETE"])
+def delete_a_product(product_id):
+    delete_product(product_id)
+    return "Deleted", 204
