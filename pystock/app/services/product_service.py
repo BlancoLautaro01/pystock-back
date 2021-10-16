@@ -39,5 +39,9 @@ def get_products():
     return products
 
 
+def delete_product(product_id):
+    products_collection.delete_one({"_id": ObjectId(product_id)})
+
+
 def drop_products():
     products_collection.drop()
