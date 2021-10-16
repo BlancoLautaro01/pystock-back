@@ -25,13 +25,18 @@ def insert_product(cod, name, price, desc):
 
 
 def update_product(_id, cod, name, price, desc):
-    products_collection.update(
+    if str(get_by_cod(cod)['_id']) != _id:
+        return "Product with the same id already exist", 400
+
+    products_collection.update_one(
         {'_id': ObjectId(_id)},
         {
-            "cod": cod,
-            "name": name,
-            "price": price,
-            "desc": desc
+            "$set": {
+                "cod": cod,
+                "name": name,
+                "price": price,
+                "desc": desc
+            }
         })
 
     return ({

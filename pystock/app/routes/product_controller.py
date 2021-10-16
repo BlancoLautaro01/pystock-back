@@ -29,9 +29,6 @@ def edit_product(product_id):
     price = credentials["price"]
     desc = credentials["desc"]
 
-    if str(get_by_cod(cod)['_id']) != product_id:
-        return "Product with the same id already exist", 400
-
     product = update_product(product_id, cod, name, price, desc)
 
     return jsonify(product), 201
