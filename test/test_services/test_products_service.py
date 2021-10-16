@@ -12,13 +12,13 @@ def after_each():
 def test_product_exist():
     before_each()
     assert not product_exist("1")
-    insert_product("1", "unombreProducto", "precioProducto", "UnaDescripcion")
+    insert_product("1", "unNombreProducto", "precioProducto", "unaDescripcion")
     assert product_exist("1")
     after_each()
+
 
 def test_insert_product():
     before_each()
-    insert_product("1", "unombreProducto", "precioProducto", "UnaDescripcion")
+    insert_product("1", "uNnombreProducto", "precioProducto", "unaDescripcion")
     assert product_exist("1")
     after_each()
-
