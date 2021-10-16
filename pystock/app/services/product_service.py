@@ -11,18 +11,40 @@ def product_exist(cod):
 
 
 def insert_product(cod, name, price, desc):
-    if not product_exist(cod):
-        response = products_collection.insert_one({"cod": cod,
-                                                   "name": name,
-                                                   "price": price,
-                                                   "desc": desc})
-        return({
-            "id": str(response.inserted_id),
+    response = products_collection.insert_one({"cod": cod,
+                                               "name": name,
+                                               "price": price,
+                                               "desc": desc})
+    return ({
+        "id": str(response.inserted_id),
+        "cod": cod,
+        "name": name,
+        "price": price,
+        "desc": desc
+    })
+
+
+def update_product(_id, cod, name, price, desc):
+    products_collection.update(
+        {'_id': ObjectId(_id)},
+        {
             "cod": cod,
             "name": name,
             "price": price,
             "desc": desc
         })
+
+    return ({
+        "id": _id,
+        "cod": cod,
+        "name": name,
+        "price": price,
+        "desc": desc
+    })
+
+
+def get_by_cod(cod):
+    return products_collection.find_one({"cod": cod})
 
 
 def get_products():
