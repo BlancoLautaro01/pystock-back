@@ -10,6 +10,19 @@ user_controller = Blueprint('user_controller', __name__)
 
 @user_controller.route('/login', methods=["POST"])
 def login():
+    """
+    "/login"  metodo tipo POST
+    Request:{
+                "email":String,
+                "password":String
+            }
+
+    :response:{
+                    "id": Int
+                    "token": String
+              }
+    Nota: el id es el del usuario.
+    """
     credentials = request.json
     email = credentials["email"]
     password = credentials["password"]
@@ -22,6 +35,10 @@ def login():
 
 @user_controller.route('/getUsers')
 def users():
+    """
+       "/getUsers"  metodo tipo GET
+       :return: json con elementos usuario, cada usurio tiene un id y un email.
+       """
     auth = request.headers.get("X-Api-Key")
     if auth != API_KEY:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
@@ -31,6 +48,18 @@ def users():
 
 @user_controller.route('/setUser', methods=["POST"])
 def create_user():
+    """
+        "/setUser"  metodo tipo POST
+        Request:{
+                    "email":String,
+                    "password":String
+                }
+
+        :response:{
+                        "id": Int
+                        "email": String
+                  }
+        """
     auth = request.headers.get("X-Api-Key")
     if auth != API_KEY:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
@@ -47,6 +76,11 @@ def create_user():
 
 @user_controller.route('/deleteUser/<user_id>', methods=["DELETE"])
 def delete_a_user(user_id):
+    """
+        '/deleteUser/<user_id>' metodo tipo DELETE
+        :param user_id: representa el id del usuario
+        :return: "Deleted", 204
+        """
     auth = request.headers.get("X-Api-Key")
     if auth != API_KEY:
         return jsonify({"message": "ERROR: Unauthorized"}), 401

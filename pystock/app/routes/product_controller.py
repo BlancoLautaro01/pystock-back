@@ -8,6 +8,24 @@ product_controller = Blueprint('product_controller', __name__)
 
 @product_controller.route('/setProduct', methods=["POST"])
 def set_product():
+    """
+        '/setProduct', methods=["POST"]
+        Request:{
+                    "cod":Int,      //codigo unico del producto
+                    "name":String,  //nombre del producto
+                    "price":Int     //precio unitario del producto
+                    "desc":String   //descripcion del producto
+                }
+
+        :response:{
+                    "id":Int        //id del producto
+                    "cod":Int,      //codigo unico interno del producto
+                    "name":String,  //nombre del producto
+                    "price":Int     //precio unitario del producto
+                    "desc":String   //descripcion del producto
+                  }
+        Nota: cod, es el codigo interno de la empresa que le asigna al producto.
+        """
     auth = request.headers.get("X-Api-Key")
     if auth != API_KEY:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
@@ -28,6 +46,23 @@ def set_product():
 
 @product_controller.route('/editProduct/<product_id>', methods=["PUT"])
 def edit_product(product_id):
+    """
+        '/editProduct/<product_id>', methods=["PUT"]
+        Request:{
+                    "cod":Int,      //codigo unico del producto
+                    "name":String,  //nombre del producto
+                    "price":Int     //precio unitario del producto
+                    "desc":String   //descripcion del producto
+                }
+
+        :response:{
+                    "id":Int        //id del producto
+                    "cod":Int,      //codigo unico interno del producto
+                    "name":String,  //nombre del producto
+                    "price":Int     //precio unitario del producto
+                    "desc":String   //descripcion del producto
+                  }
+        """
     auth = request.headers.get("X-Api-Key")
     if auth != API_KEY:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
@@ -45,6 +80,10 @@ def edit_product(product_id):
 
 @product_controller.route('/getProducts')
 def products():
+    """
+        '/getProducts' metodo tipo GET
+        Retorna un json con todos los productos.
+        """
     auth = request.headers.get("X-Api-Key")
     if auth != API_KEY:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
@@ -54,6 +93,11 @@ def products():
 
 @product_controller.route('/deleteProduct/<product_id>', methods=["DELETE"])
 def delete_a_product(product_id):
+    """
+        '/deleteProduct/<product_id>', methods=["DELETE"]
+        Borra un producto con id: <product_id>'
+        Retorna "Deleted" con codigo HTPP 204
+        """
     auth = request.headers.get("X-Api-Key")
     if auth != API_KEY:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
