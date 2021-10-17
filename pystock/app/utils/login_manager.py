@@ -6,4 +6,3 @@ def check_login(email, password):
         return password == dao.get_password(email)
     else:
         return False
-
