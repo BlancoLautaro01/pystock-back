@@ -1,7 +1,6 @@
 from bson.objectid import ObjectId
 from pystock.app.config import MONGO_SERVICE
 
-
 products_collection = MONGO_SERVICE.get_products()
 
 
@@ -25,8 +24,8 @@ def insert_product(cod, name, price, desc):
 
 
 def update_product(_id, cod, name, price, desc):
-    if str(get_by_cod(cod)['_id']) != _id:
-        return "Product with the same id already exist", 400
+    if cod in get_all_codes() and str(get_by_cod(cod)['_id']) != _id:
+        return "Product with the same id already exist", 500
 
     products_collection.update_one(
         {'_id': ObjectId(_id)},
@@ -64,6 +63,10 @@ def get_products():
                 "price": product["price"],
             })
     return products
+
+
+def get_all_codes():
+    return [product['cod'] for product in get_products()]
 
 
 def delete_product(product_id):
