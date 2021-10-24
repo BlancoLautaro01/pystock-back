@@ -30,11 +30,16 @@ def set_product():
     if auth != API_KEY:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
 
+
+
     credentials = request.json
     cod = credentials["cod"]
     name = credentials["name"]
     price = credentials["price"]
     desc = credentials["desc"]
+
+    if not price.isnumeric():
+        return jsonify({"message": "ERROR: Price field can only be numbers"}), 500
 
     if product_exist(cod):
         return "Product with the same id already exist", 400
@@ -72,6 +77,9 @@ def edit_product(product_id):
     name = credentials["name"]
     price = credentials["price"]
     desc = credentials["desc"]
+
+    if not price.isnumeric():
+        return jsonify({"message": "ERROR: Price field can only be numbers"}), 500
 
     product = update_product(product_id, cod, name, price, desc)
 
