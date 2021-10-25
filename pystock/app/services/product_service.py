@@ -1,4 +1,5 @@
 from bson.objectid import ObjectId
+from flask import jsonify
 from pystock.app.config import MONGO_SERVICE
 
 products_collection = MONGO_SERVICE.get_products()
@@ -25,7 +26,7 @@ def insert_product(cod, name, price, desc):
 
 def update_product(_id, cod, name, price, desc):
     if cod in get_all_codes() and str(get_by_cod(cod)['_id']) != _id:
-        return "Product with the same id already exist", 500
+        return jsonify({"message": "ERROR: Product with the same id already exists"}), 500
 
     products_collection.update_one(
         {'_id': ObjectId(_id)},

@@ -42,7 +42,7 @@ def set_product():
         return jsonify({"message": "ERROR: Price field can only be numbers"}), 500
 
     if product_exist(cod):
-        return "Product with the same id already exist", 400
+        return jsonify({"message": "ERROR: Product with the same id already exists"}), 500
 
     product = insert_product(cod, name, price, desc)
 
