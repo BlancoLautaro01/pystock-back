@@ -1,3 +1,5 @@
+import pytest
+
 from pystock.app.services.product_service import *
 
 
@@ -45,7 +47,8 @@ def test_update_product_cod_already_exist():
     insert_product("COD2", "uNnombreProducto", "precioProducto", "unaDescripcion")
 
     # El cod que se le esta queriendo editar al producto ya esta en uso por otro.
-    update_product(product["id"], "COD2", "Nombre Nuevo", "precioProducto", "unaDescripcion")
+    with pytest.raises(Exception) as ex:
+        update_product(product["id"], "COD2", "Nombre Nuevo", "precioProducto", "unaDescripcion")
 
     # Por lo tanto no se edito.
     assert product["name"] == "unNombreProducto"
