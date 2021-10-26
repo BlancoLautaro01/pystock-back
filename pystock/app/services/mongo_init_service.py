@@ -16,6 +16,8 @@ class MongoInitService:
         # -- Collections --
         self._users_collection = self._create_collection('users')
         self._products_collection = self._create_collection('products')
+        self._stock_movements_collection = self._create_collection("stock_movements")
+        self._stock_collection = self._create_collection("stock")
 
         # -- Base Data --
         # Admin User
@@ -30,3 +32,9 @@ class MongoInitService:
 
     def get_products(self):
         return self._products_collection
+
+    def get_stock_movements(self):
+        return self._stock_movements_collection
+
+    def get_stock(self):
+        return self._stock_collection
