@@ -35,8 +35,7 @@
 <h4>URL del Producto</h4>
 - A Definir
 <br>
-<br>
 
 <h4>Estado de los Test</h4>
-![example workflow](https://github.com/BlancoLautaro01/pystock-back/actions/workflows/python-app.yml/badge.svg)
+![PyStock CI](https://github.com/BlancoLautaro01/pystock-back/actions/workflows/python-app.yml/badge.svg)
 
