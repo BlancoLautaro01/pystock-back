@@ -37,5 +37,5 @@
 <br>
 
 <h4>Estado de los Test</h4>
-![PyStock CI](https://github.com/BlancoLautaro01/pystock-back/actions/workflows/python-app.yml/badge.svg)
+![example workflow](https://github.com/BlancoLautaro01/pystock-back/actions/workflows/python-app.yml/badge.svg)
 
