@@ -54,6 +54,10 @@ def get_stock(code):
 def stock_exists(code):
     return stock_collection.find_one({"cod": code}) is not None
 
+def get_all_stock():
+    return stock_collection.find()
+
+
 #funciones para testing
 def drop_collection():
     stock_collection.drop()
