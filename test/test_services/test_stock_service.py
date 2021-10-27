@@ -75,3 +75,31 @@ def test_update_stock_case_remove_stock():
     assert updated_stock["quantity"] == quant - stock_variation
 
     after_each()
+
+
+def test_get_all_stock():
+    before_each()
+
+    insert_product("001", "name1", 101, "desc1")
+    insert_product("002", "name2", 102, "desc2")
+    insert_product("003", "name3", 103, "desc3")
+
+    insert_stock("001", 1)
+    insert_stock("002", 2)
+    insert_stock("003", 3)
+
+    stock = get_all_stock()
+
+    assert stock[0]["cod"] == "001"
+    assert stock[0]["name"] == "name1"
+    assert stock[0]["quantity"] == 1
+
+    assert stock[1]["cod"] == "002"
+    assert stock[1]["name"] == "name2"
+    assert stock[1]["quantity"] == 2
+
+    assert stock[2]["cod"] == "003"
+    assert stock[2]["name"] == "name3"
+    assert stock[2]["quantity"] == 3
+
+    after_each()
