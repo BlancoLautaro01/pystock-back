@@ -1,15 +1,21 @@
 from pystock.app.config import MONGO_SERVICE
+from pystock.app.services.product_service import *
 
 stock_collection = MONGO_SERVICE.get_stock()
 
 
 def insert_stock(cod, quantity):
+
+    name = get_by_cod(cod)["name"]
+
     response = stock_collection.insert_one({"cod": cod,
+                                            "name": name,
                                             "quantity": quantity
                                             })
     return ({
         "id": str(response.inserted_id),
         "cod": cod,
+        "name": name,
         "quantity": quantity,
     })
 
@@ -37,6 +43,7 @@ def update_stock(cod, quantity, type_of_movement):
 
     return ({
         "cod": cod,
+        "name": stock["name"],
         "quantity": quantity
     })
 
@@ -50,3 +57,4 @@ def stock_exists(code):
 #funciones para testing
 def drop_collection():
     stock_collection.drop()
+
