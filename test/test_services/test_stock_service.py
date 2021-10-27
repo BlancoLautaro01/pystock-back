@@ -1,19 +1,21 @@
 from pystock.app.services.stock_service import *
-
+from pystock.app.services.product_service import *
 
 def before_each():
     drop_collection()
+    drop_products()
 
 
 def after_each():
     drop_collection()
-
+    drop_products()
 
 def test_insert_stock_case_good_response():
     before_each()
 
     code = "COD001"
     quant = 10
+    insert_product(code, "name1", 100, "desc1")
     inserted_stock = insert_stock(code, quant)
 
     assert inserted_stock["cod"] == code
@@ -27,6 +29,7 @@ def test_get_stock():
 
     code = "COD001"
     quant = 10
+    insert_product(code, "name1", 100, "desc1")
     insert_stock(code, quant)
     inserted_stock = get_stock(code)
 
@@ -43,6 +46,7 @@ def test_update_stock_case_add_stock():
     quant = 10
     stock_variation = 5
 
+    insert_product(code, "name1", 100, "desc1")
     insert_stock(code, quant)
 
     update_stock(code, stock_variation, True)
@@ -61,6 +65,7 @@ def test_update_stock_case_remove_stock():
     quant = 10
     stock_variation = 5
 
+    insert_product(code, "name1", 100, "desc1")
     insert_stock(code, quant)
 
     update_stock(code, stock_variation, False)
