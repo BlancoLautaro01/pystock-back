@@ -11,7 +11,6 @@
  PyStock es una aplicación web que te permite llevar cuenta de tu inventario y manejar tus ventas
  que a diferencia de otros productos es super simple y 100% gratuito.
 <br>
-  
 <br>
 <h4>Reportes</h4>
 - https://github.com/BlancoLautaro01/pystock-back/tree/main/reportes
@@ -36,3 +35,7 @@
 <h4>URL del Producto</h4>
 - A Definir
 <br>
+<br>
+
+![PyStock](https://github.com/BlancoLautaro01/pystock-back/actions/workflows/python-app.yml/badge.svg)
+
