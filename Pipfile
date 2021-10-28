@@ -7,6 +7,7 @@ name = "pypi"
 flask = "*"
 pymongo = "*"
 flask-cors = "*"
+pytest = "*"
 
 [dev-packages]
 
