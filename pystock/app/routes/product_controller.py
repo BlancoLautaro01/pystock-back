@@ -36,7 +36,7 @@ def set_product():
     price = credentials["price"]
     desc = credentials["desc"]
 
-    if not price.isnumeric():
+    if not isinstance(price, int) and not price.isnumeric():
         return jsonify({"message": "ERROR: Price field can only be numbers"}), 500
 
     if product_exist(cod):

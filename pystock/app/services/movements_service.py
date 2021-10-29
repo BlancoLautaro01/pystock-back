@@ -61,5 +61,9 @@ def get_all_movements():
     return movements
 
 
+def get_all_movement_codes():
+    return [movement['cod'] for movement in get_all_movements()]
+
+
 def drop_collection():
     movement_collection.drop()
