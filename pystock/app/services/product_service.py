@@ -53,17 +53,17 @@ def get_by_cod(cod):
 
 
 def get_products():
-    # products = []
-    # for product in products_collection.find({}):
-    #     products.append(
-    #         {
-    #             "id": str(product["_id"]),
-    #             "cod": product["cod"],
-    #             "name": product["name"],
-    #             "desc": product["desc"],
-    #             "price": product["price"],
-    #         })
-    return list(products_collection.find({}))
+    products = []
+    for product in products_collection.find({}):
+        products.append(
+            {
+                "id": str(product["_id"]),
+                "cod": product["cod"],
+                "name": product["name"],
+                "desc": product["desc"],
+                "price": product["price"],
+            })
+    return products
 
 
 def get_all_codes():

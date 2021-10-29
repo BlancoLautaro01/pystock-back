@@ -47,7 +47,18 @@ def exists_movement_of(cod):
 
 
 def get_all_movements():
-    return list(movement_collection.find({}))
+    movements = []
+    for movement in movement_collection.find({}):
+        movements.append(
+            {
+                "id": str(movement["_id"]),
+                "cod": movement["cod"],
+                "name": movement["name"],
+                "date": movement["date"],
+                "amount": movement["amount"],
+                "type": movement["type"],
+            })
+    return movements
 
 
 def drop_collection():

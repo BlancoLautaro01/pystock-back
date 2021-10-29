@@ -35,3 +35,22 @@ def add_movement():
     movement = set_movement(cod, amount, type_of_movement)
 
     return jsonify(movement), 201
+
+
+@stock_controller.route('/getMovements', methods=["GET"])
+def movements():
+    """
+        '/getMovement', methods=["GET"]
+        :response:[{
+                    "id":Int        //id del movimiento de stock
+                    "cod":Int,      //codigo unico interno del producto
+                    "date":datetime,  //datetime de cuando se ingreso el stock
+                    "cantidad":Int     //cantidad a sumar o restar al stock
+                  }]
+        Nota: cod, es el codigo interno de la empresa que le asigna al producto.
+        """
+    auth = request.headers.get("X-Api-Key")
+    if auth != API_KEY:
+        return jsonify({"message": "ERROR: Unauthorized"}), 401
+
+    return jsonify(get_all_movements()), 200
