@@ -30,8 +30,6 @@ def set_product():
     if auth != API_KEY:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
 
-
-
     credentials = request.json
     cod = credentials["cod"]
     name = credentials["name"]
