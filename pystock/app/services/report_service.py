@@ -5,8 +5,9 @@ from pystock.app.services.movements_service import get_all_movements, get_all_mo
 def get_report():
     report = []
     codes = get_all_codes()
+
     for cod in get_all_movement_codes():
-        if not codes.includes(cod):
+        if cod not in codes:
             codes.append(cod)
 
     for cod in codes:

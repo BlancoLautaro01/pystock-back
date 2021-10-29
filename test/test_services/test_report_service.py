@@ -20,5 +20,5 @@ def after_each():
 #     set_movement("COD2", 10, True)
 #
 #     report = get_report()
-#     assert not report
+#     assert len(report) == 3
 #     assert report[0] is not None
