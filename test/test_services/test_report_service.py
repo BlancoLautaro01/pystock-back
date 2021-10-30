@@ -12,13 +12,12 @@ def before_each():
 def after_each():
     drop_collection()
 
-
+#
 # def test_report():
 #     set_movement("COD1", 10, True)
 #     set_movement("COD1", "5", False)
 #
 #     set_movement("COD2", 10, True)
 #
-#     report = get_report()
-#     assert len(report) == 3
+#     assert len(get_report()) == 3
 #     assert report[0] is not None

@@ -19,19 +19,19 @@ def test_set_movement():
     movement_in = set_movement("COD1", 5, True)
     movement_out = set_movement("COD1", "5", False)
 
-    assert not movement_in["id"] is None
-    assert movement_in["cod"] == "COD1"
-    assert movement_in["name"] == "NOMBRE1"
-    assert movement_in["amount"] == 5
-    assert movement_in["type"]
-    assert not movement_in["date"] is None
+    assert not movement_in[0]["id"] is None
+    assert movement_in[0]["cod"] == "COD1"
+    assert movement_in[0]["name"] == "NOMBRE1"
+    assert movement_in[0]["amount"] == 5
+    assert movement_in[0]["type"]
+    assert not movement_in[0]["date"] is None
 
-    assert not movement_out["id"] is None
-    assert movement_out["cod"] == "COD1"
-    assert movement_out["name"] == "NOMBRE1"
-    assert movement_out["amount"] == 5
-    assert not movement_out["type"]
-    assert not movement_out["date"] is None
+    assert not movement_out[0]["id"] is None
+    assert movement_out[0]["cod"] == "COD1"
+    assert movement_out[0]["name"] == "NOMBRE1"
+    assert movement_out[0]["amount"] == 5
+    assert not movement_out[0]["type"]
+    assert not movement_out[0]["date"] is None
 
     assert len(get_all_movements()) == 2
 
@@ -91,7 +91,7 @@ def test_set_movement_out_leaving_negative_stock():
 
     movement = set_movement("COD1", 5, False)
 
-    assert movement["cod"] == "COD1"
+    assert movement[0]["cod"] == "COD1"
 
     after_each()
 
