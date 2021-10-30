@@ -1,5 +1,5 @@
-from pystock.app.services.product_service import get_all_codes, get_by_cod
-from pystock.app.services.movements_service import get_all_movements, get_all_movement_codes
+from pystock.app.services.product_service import get_all_codes, get_by_cod, product_exist
+from pystock.app.services.movements_service import get_all_movements, get_all_movement_codes, get_movement_by_cod
 
 
 def get_report():
@@ -17,7 +17,11 @@ def get_report():
 
 
 def generate_report_of(cod):
-    name = get_by_cod(cod)["name"]
+    if product_exist(cod):
+        name = get_by_cod(cod)["name"]
+    else:
+        name = get_movement_by_cod(cod)["name"]
+
     total_amount = 0
     for movement in get_all_movements():
         if movement["cod"] == cod:

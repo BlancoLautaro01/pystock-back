@@ -79,6 +79,10 @@ def get_all_movements():
     return movements
 
 
+def get_movement_by_cod(cod):
+    return movement_collection.find_one({"cod": cod})
+
+
 def get_all_movement_codes():
     return [movement['cod'] for movement in get_all_movements()]
 
