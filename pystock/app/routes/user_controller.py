@@ -69,7 +69,8 @@ def create_user():
     password = credentials["password"]
 
     if user_exist(email):
-        return "User already exist", 500
+        return jsonify({"message": "ERROR: User email already exist"}), 500
+
     user = insert_user(email, password)
     return jsonify(user), 201
 
