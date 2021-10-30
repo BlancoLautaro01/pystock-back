@@ -17,11 +17,16 @@ def set_movement(cod, amount, type_of_movement):
     if not isinstance(amount, int) and not amount.isnumeric():
         return {"message": "ERROR: Quantity field can only be numbers"}, 500
 
+    amount = int(amount)
+
     if not product_exist(cod):
         return {"message": "ERROR: Product code not exists"}, 500
 
-    if not exists_movement_of(cod) and not type_of_movement:
-        return {"message": "ERROR: First movement of a product cant be 'out'"}, 500
+    if amount <= 0:
+        return {"message": "ERROR: Amount cant be less than 1"}, 500
+
+    if total_amount_of(cod) < amount and not type_of_movement:
+        return {"message": "ERROR: Out movement cant leave a negative product stock"}, 500
 
     product = get_by_cod(cod)
     movement_datetime = datetime.datetime.now()
@@ -40,6 +45,18 @@ def set_movement(cod, amount, type_of_movement):
         "amount": amount,
         "type": type_of_movement
     })
+
+
+def total_amount_of(cod):
+    total_amount = 0
+    for movement in get_all_movements():
+        if movement["cod"] == cod:
+            if movement["type"]:
+                total_amount += int(movement["amount"])
+            else:
+                total_amount -= int(movement["amount"])
+
+    return total_amount
 
 
 def exists_movement_of(cod):

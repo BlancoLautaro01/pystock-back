@@ -29,7 +29,7 @@ def test_set_movement():
     assert not movement_out["id"] is None
     assert movement_out["cod"] == "COD1"
     assert movement_out["name"] == "NOMBRE1"
-    assert movement_out["amount"] == "5"
+    assert movement_out["amount"] == 5
     assert not movement_out["type"]
     assert not movement_out["date"] is None
 
@@ -60,13 +60,38 @@ def test_set_movement_unexisting_product_cod():
     after_each()
 
 
-def test_set_movement_out_with_no_entry():
+def test_set_movement_amount_less_than_one():
     before_each()
 
-    movement = set_movement("COD1", 50, False)
+    movement0 = set_movement("COD1", 0, True)
+    movement_minus_0 = set_movement("COD1", -10, True)
 
-    assert movement[0]["message"] == "ERROR: First movement of a product cant be 'out'"
+    assert movement0[0]["message"] == "ERROR: Amount cant be less than 1"
+    assert movement0[1] == 500
+
+    assert movement_minus_0[0]["message"] == "ERROR: Amount cant be less than 1"
+    assert movement_minus_0[1] == 500
+
+    after_each()
+
+
+def test_set_movement_out_leaving_negative_stock():
+    before_each()
+
+    movement = set_movement("COD1", 10, False)
+
+    assert movement[0]["message"] == "ERROR: Out movement cant leave a negative product stock"
     assert movement[1] == 500
+
+    set_movement("COD1", 10, True)
+    movement = set_movement("COD1", 15, False)
+
+    assert movement[0]["message"] == "ERROR: Out movement cant leave a negative product stock"
+    assert movement[1] == 500
+
+    movement = set_movement("COD1", 5, False)
+
+    assert movement["cod"] == "COD1"
 
     after_each()
 
