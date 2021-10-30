@@ -44,7 +44,7 @@ def set_movement(cod, amount, type_of_movement):
         "date": movement_datetime,
         "amount": amount,
         "type": type_of_movement
-    })
+    }, 201)
 
 
 def total_amount_of(cod):

@@ -34,7 +34,7 @@ def add_movement():
 
     movement = set_movement(cod, amount, type_of_movement)
 
-    return jsonify(movement), 201
+    return jsonify(movement[0]), movement[1]
 
 
 @stock_controller.route('/getMovements', methods=["GET"])
