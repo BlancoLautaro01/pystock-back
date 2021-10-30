@@ -21,7 +21,10 @@ def generate_report_of(cod):
     total_amount = 0
     for movement in get_all_movements():
         if movement["cod"] == cod:
-            total_amount += movement["amount"]
+            if movement["type"]:
+                total_amount += int(movement["amount"])
+            else:
+                total_amount -= int(movement["amount"])
 
     return {
         "cod": cod,
