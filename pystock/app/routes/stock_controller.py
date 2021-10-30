@@ -54,3 +54,18 @@ def movements():
         return jsonify({"message": "ERROR: Unauthorized"}), 401
 
     return jsonify(get_all_movements()), 200
+
+
+@stock_controller.route('/deleteMovement/<movement_id>', methods=["DELETE"])
+def delete_a_movement(movement_id):
+    """
+        '/deleteMovement/<movement_id>', methods=["DELETE"]
+        Borra un movimiento con id: <movement_id>'
+        Retorna "Deleted" con codigo HTPP 204
+        """
+    auth = request.headers.get("X-Api-Key")
+    if auth != API_KEY:
+        return jsonify({"message": "ERROR: Unauthorized"}), 401
+
+    delete_movement(movement_id)
+    return "Deleted", 204
