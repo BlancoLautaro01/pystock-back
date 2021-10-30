@@ -105,3 +105,15 @@ def test_exists_movement_of():
     assert not exists_movement_of("COD2")
 
     after_each()
+
+
+def test_delete_movement():
+    before_each()
+
+    movement = set_movement("COD1", 50, True)
+    assert exists_movement_of("COD1")
+
+    delete_movement(movement[0]["id"])
+    assert not exists_movement_of("COD1")
+
+    after_each()
