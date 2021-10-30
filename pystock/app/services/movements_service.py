@@ -1,3 +1,4 @@
+from bson.objectid import ObjectId
 from pystock.app.config import MONGO_SERVICE
 from pystock.app.services.product_service import get_by_cod, product_exist
 import datetime
@@ -80,6 +81,10 @@ def get_all_movements():
 
 def get_all_movement_codes():
     return [movement['cod'] for movement in get_all_movements()]
+
+
+def delete_movement(movement_id):
+    movement_collection.delete_one({"_id": ObjectId(movement_id)})
 
 
 def drop_collection():
