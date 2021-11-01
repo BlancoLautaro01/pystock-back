@@ -70,12 +70,9 @@ def edit_product(product_id):
     price = credentials["price"]
     desc = credentials["desc"]
 
-    if not price.isnumeric():
-        return jsonify({"message": "ERROR: Price field can only be numbers"}), 500
-
     product = update_product(product_id, cod, name, price, desc)
 
-    return jsonify(product), 201
+    return jsonify(product[0]), product[1]
 
 
 @product_controller.route('/getProducts')
