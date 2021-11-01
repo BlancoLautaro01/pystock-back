@@ -4,9 +4,9 @@ from pystock.app.services.report_service import get_report
 
 
 def before_each():
-    insert_product("COD1", "NOMBRE1", "", 50)
-    insert_product("COD2", "NOMBRE2", "", 150)
-    insert_product("COD3", "NOMBRE3", "", 250)
+    insert_product("COD1", "NOMBRE1", "50", "")
+    insert_product("COD2", "NOMBRE2", "150", "")
+    insert_product("COD3", "NOMBRE3", "250", "")
 
 
 def after_each():
