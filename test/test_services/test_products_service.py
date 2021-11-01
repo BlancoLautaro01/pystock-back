@@ -32,7 +32,7 @@ def test_update_product_success():
     before_each()
 
     product = insert_product("COD1", "unNombreProducto", "200", "unaDescripcion")
-    update_product(product["id"], "COD1", "Nombre Nuevo", "200", "unaDescripcion")
+    update_product(product[0]["id"], "COD1", "Nombre Nuevo", "200", "unaDescripcion")
 
     edited_product = get_by_cod("COD1")
     assert edited_product["name"] == "Nombre Nuevo"
@@ -47,12 +47,12 @@ def test_update_product_cod_already_exist():
     insert_product("COD2", "uNnombreProducto", "200", "unaDescripcion")
 
     # El cod que se le esta queriendo editar al producto ya esta en uso por otro.
-    response = update_product(product["id"], "COD2", "Nombre Nuevo", "200", "unaDescripcion")
+    response = update_product(product[0]["id"], "COD2", "Nombre Nuevo", "200", "unaDescripcion")
 
     # Por lo tanto no se edito.
     assert response[0]["message"] == "ERROR: Product with the same id already exists"
-    assert product["name"] == "unNombreProducto"
-    assert product["cod"] == "COD1"
+    assert product[0]["name"] == "unNombreProducto"
+    assert product[0]["cod"] == "COD1"
 
     after_each()
 
@@ -78,6 +78,6 @@ def test_delete_product():
     before_each()
     product = insert_product("COD1", "unNombreProducto", "200", "unaDescripcion")
     assert product_exist("COD1")
-    delete_product(product["id"])
+    delete_product(product[0]["id"])
     assert not product_exist("COD1")
     after_each()
