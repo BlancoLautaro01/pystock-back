@@ -1,5 +1,5 @@
 from pystock.app.services.movements_service import *
-from pystock.app.services.product_service import insert_product, get_all_codes
+from pystock.app.services.product_service import insert_product
 from pystock.app.services.report_service import get_report
 
 

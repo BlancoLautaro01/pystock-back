@@ -22,12 +22,13 @@ def login_service(email, password):
 def insert_user(email, password):
     if user_exist(email):
         return {"message": "ERROR: User email already exist"}, 500
-    response = users_collection.insert_one({"email": email, "password": password})
 
-    return{
-        "id": str(response.inserted_id),
+    user = users_collection.insert_one({"email": email, "password": password})
+
+    return({
+        "id": str(user.inserted_id),
         "email": email
-    }, 201
+    }, 201)
 
 
 def get_users():

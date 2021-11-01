@@ -26,14 +26,14 @@ def insert_product(cod, name, price, desc):
         "name": name,
         "price": price,
         "desc": desc
-    })
+    }, 201)
 
 
 def update_product(_id, cod, name, price, desc):
     if cod in get_all_codes() and str(get_by_cod(cod)['_id']) != _id:
         return {"message": "ERROR: Product with the same id already exists"}, 500
 
-    if not price.isnumeric():
+    if not isinstance(price, int) and not price.isnumeric():
         return {"message": "ERROR: Price field can only be numbers"}, 500
 
     products_collection.update_one(
@@ -53,7 +53,7 @@ def update_product(_id, cod, name, price, desc):
         "name": name,
         "price": price,
         "desc": desc
-    })
+    }, 200)
 
 
 def get_by_cod(cod):
