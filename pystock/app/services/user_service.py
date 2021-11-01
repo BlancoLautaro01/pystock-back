@@ -1,5 +1,7 @@
 from bson.objectid import ObjectId
 from pystock.app.config import MONGO_SERVICE
+from pystock.app.config import API_KEY
+from pystock.app.utils.login_manager import check_login
 
 
 users_collection = MONGO_SERVICE.get_users()
@@ -10,13 +12,22 @@ def user_exist(email):
     return result is not None
 
 
+def login_service(email, password):
+    if not check_login(email, password):
+        return {"message": "User not found"}, 500
+
+    return {"id": get_id(email), "apikey": API_KEY}, 200
+
+
 def insert_user(email, password):
-    if not user_exist(email):
-        response = users_collection.insert_one({"email": email, "password": password})
-        return({
-            "id": str(response.inserted_id),
-            "email": email
-        })
+    if user_exist(email):
+        return {"message": "ERROR: User email already exist"}, 500
+    response = users_collection.insert_one({"email": email, "password": password})
+
+    return{
+        "id": str(response.inserted_id),
+        "email": email
+    }, 201
 
 
 def get_users():

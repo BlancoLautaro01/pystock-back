@@ -36,15 +36,9 @@ def set_product():
     price = credentials["price"]
     desc = credentials["desc"]
 
-    if not isinstance(price, int) and not price.isnumeric():
-        return jsonify({"message": "ERROR: Price field can only be numbers"}), 500
-
-    if product_exist(cod):
-        return jsonify({"message": "ERROR: Product with the same id already exists"}), 500
-
     product = insert_product(cod, name, price, desc)
 
-    return jsonify(product), 201
+    return jsonify(product[0]), product[1]
 
 
 @product_controller.route('/editProduct/<product_id>', methods=["PUT"])
@@ -76,12 +70,9 @@ def edit_product(product_id):
     price = credentials["price"]
     desc = credentials["desc"]
 
-    if not price.isnumeric():
-        return jsonify({"message": "ERROR: Price field can only be numbers"}), 500
-
     product = update_product(product_id, cod, name, price, desc)
 
-    return jsonify(product), 201
+    return jsonify(product[0]), product[1]
 
 
 @product_controller.route('/getProducts')
