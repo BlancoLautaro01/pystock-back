@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request
 
-from pystock.app.utils.login_manager import check_login
-from pystock.app.services.user_service import get_id, get_users, insert_user, user_exist, delete_user
+from pystock.app.services.user_service import get_id, get_users, insert_user, user_exist, delete_user, login_service
 from pystock.app.config import API_KEY
 
 
@@ -27,10 +26,9 @@ def login():
     email = credentials["email"]
     password = credentials["password"]
 
-    if not check_login(email, password):
-        return "User not fond", 500
+    response = login_service(email, password)
 
-    return {"id": get_id(email), "apikey": API_KEY}
+    return jsonify(response[0]), response[1]
 
 
 @user_controller.route('/getUsers')
@@ -68,11 +66,8 @@ def create_user():
     email = credentials["email"]
     password = credentials["password"]
 
-    if user_exist(email):
-        return jsonify({"message": "ERROR: User email already exist"}), 500
-
     user = insert_user(email, password)
-    return jsonify(user), 201
+    return jsonify(user[0]), user[1]
 
 
 @user_controller.route('/deleteUser/<user_id>', methods=["DELETE"])
