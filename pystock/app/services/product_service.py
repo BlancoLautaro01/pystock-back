@@ -11,6 +11,11 @@ def product_exist(cod):
 
 
 def insert_product(cod, name, price, desc):
+    if not isinstance(price, int) and not price.isnumeric():
+        return {"message": "ERROR: Price field can only be numbers"}, 500
+
+    if product_exist(cod):
+        return {"message": "ERROR: Product with the same id already exists"}, 500
     response = products_collection.insert_one({"cod": cod,
                                                "name": name,
                                                "price": price,
@@ -26,7 +31,7 @@ def insert_product(cod, name, price, desc):
 
 def update_product(_id, cod, name, price, desc):
     if cod in get_all_codes() and str(get_by_cod(cod)['_id']) != _id:
-        return jsonify({"message": "ERROR: Product with the same id already exists"}), 500
+        return {"message": "ERROR: Product with the same id already exists"}, 500
 
     products_collection.update_one(
         {'_id': ObjectId(_id)},
