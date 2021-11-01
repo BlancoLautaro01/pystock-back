@@ -1,5 +1,5 @@
 from pystock.app.services.movements_service import *
-from pystock.app.services.product_service import insert_product
+from pystock.app.services.product_service import insert_product, drop_products
 from pystock.app.services.report_service import get_report
 
 
@@ -11,6 +11,7 @@ def before_each():
 
 def after_each():
     drop_collection()
+    drop_products()
 
 
 def test_report():

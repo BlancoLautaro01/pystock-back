@@ -1,9 +1,8 @@
 from pystock.app.services.movements_service import *
-from pystock.app.services.product_service import insert_product
+from pystock.app.services.product_service import insert_product, drop_products
 
 
 def before_each():
-    drop_collection()
     insert_product("COD1", "NOMBRE1", "50", "")
     insert_product("COD2", "NOMBRE2", "150", "")
     insert_product("COD3", "NOMBRE3", "250", "")
@@ -11,6 +10,7 @@ def before_each():
 
 def after_each():
     drop_collection()
+    drop_products()
 
 
 def test_set_movement():
