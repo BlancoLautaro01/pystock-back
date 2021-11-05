@@ -7,22 +7,6 @@ stock_controller = Blueprint('stock_controller', __name__)
 
 @stock_controller.route('/setMovement', methods=["POST"])
 def add_movement():
-    """
-        '/setMovement', methods=["POST"]
-        Request:{
-                    "cod":Int,      //codigo unico del producto
-                    "quantity":Int,  //cantidad a agregar o sacar del stock
-                    "type":bool     //True para agregar, False para sacar stock
-                }
-
-        :response:{
-                    "id":Int        //id del movimiento de stock
-                    "cod":Int,      //codigo unico interno del producto
-                    "date":datetime,  //datetime de cuando se ingreso el stock
-                    "cantidad":Int     //cantidad a sumar o restar al stock
-                  }
-        Nota: cod, es el codigo interno de la empresa que le asigna al producto.
-        """
     auth = request.headers.get("X-Api-Key")
     if auth != API_KEY:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
@@ -39,16 +23,6 @@ def add_movement():
 
 @stock_controller.route('/getMovements', methods=["GET"])
 def movements():
-    """
-        '/getMovement', methods=["GET"]
-        :response:[{
-                    "id":Int        //id del movimiento de stock
-                    "cod":Int,      //codigo unico interno del producto
-                    "date":datetime,  //datetime de cuando se ingreso el stock
-                    "cantidad":Int     //cantidad a sumar o restar al stock
-                  }]
-        Nota: cod, es el codigo interno de la empresa que le asigna al producto.
-        """
     auth = request.headers.get("X-Api-Key")
     if auth != API_KEY:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
@@ -58,11 +32,6 @@ def movements():
 
 @stock_controller.route('/deleteMovement/<movement_id>', methods=["DELETE"])
 def delete_a_movement(movement_id):
-    """
-        '/deleteMovement/<movement_id>', methods=["DELETE"]
-        Borra un movimiento con id: <movement_id>'
-        Retorna "Deleted" con codigo HTPP 204
-        """
     auth = request.headers.get("X-Api-Key")
     if auth != API_KEY:
         return jsonify({"message": "ERROR: Unauthorized"}), 401

@@ -7,14 +7,6 @@ movement_collection = MONGO_SERVICE.get_movements()
 
 
 def set_movement(cod, amount, type_of_movement):
-    """
-    Inseta un movimiento de stock
-    :param cod: es el codigo unico del producto
-    :param amount: es la cantidad que se agrega o saca al stock
-    :param type_of_movement: es un booleano, true significa que es una entrada de stock y false una salida de stock.
-    :return: json con id del producto, codigo de producto, cantidad y un bool.
-    """
-
     if not isinstance(amount, int) and not amount.isnumeric():
         return {"message": "ERROR: Quantity field can only be numbers"}, 500
 

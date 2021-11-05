@@ -8,11 +8,6 @@ report_controller = Blueprint('report_controller', __name__)
 
 @report_controller.route('/getReport')
 def report():
-    """
-        '/getReport', methods=["GET"]
-
-        :response: devuelve una lista de json con codigo, nombre y cantidad.
-        """
     auth = request.headers.get("X-Api-Key")
     if auth != API_KEY:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
