@@ -32,6 +32,10 @@
 - https://github.com/BlancoLautaro01/pystock-front
 <br>
 
+<h4>Swagger</h4>
+- https://app.swaggerhub.com/apis-docs/lautaro.blanco/PyStock/1.0.0
+<br>
+
 <h4>URL del Producto</h4>
 - A Definir
 <br>
