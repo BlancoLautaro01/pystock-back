@@ -9,12 +9,14 @@ from pystock.app.routes.report_controller import report_controller
 
 # App creation + Cors
 app = Flask(__name__)
-CORS(app)
+
 
 # Routes register
 app.register_blueprint(user_controller)
 app.register_blueprint(product_controller)
 app.register_blueprint(stock_controller)
 app.register_blueprint(report_controller)
+
+CORS(app)
 
 app.run(port=4000)
