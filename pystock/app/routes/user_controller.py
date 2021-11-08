@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-
+from flask_cors import cross_origin
 from pystock.app.services.user_service import get_id, get_users, insert_user, user_exist, delete_user, login_service
 from pystock.app.config import API_KEY
 
@@ -8,6 +8,7 @@ user_controller = Blueprint('user_controller', __name__)
 
 
 @user_controller.route('/login', methods=["POST"])
+@cross_origin()
 def login():
     credentials = request.json
     email = credentials["email"]
