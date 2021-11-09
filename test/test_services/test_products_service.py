@@ -1,6 +1,6 @@
 import pytest
 
-from pystock.app.services.product_service import *
+from pystock.app.services.product_service import drop_products, product_exist, insert_product, update_product, get_products, get_by_cod, delete_product
 from pystock.app.services.movements_service import set_movement, drop_collection
 
 
@@ -87,6 +87,7 @@ def test_delete_product():
 
 def test_get_products_with_stock():
     before_each()
+    from pystock.app.services.product_service import get_products_with_stock
 
     #preparacion
     cod1 = "cod001"
@@ -106,13 +107,22 @@ def test_get_products_with_stock():
     set_movement(cod2, 50, False)
     set_movement(cod3, 1, True)
 
-    productos_con_stock = []
-    productos_con_stock.append(producto1)
-    productos_con_stock.append(producto2)
+    productos_con_stock = get_products_with_stock()
+
 
     assert len(productos_con_stock) == 2
-    assert not producto1 in productos_con_stock
-    assert producto2 in productos_con_stock
-    assert producto3 in productos_con_stock
+    assert productos_con_stock[0]["cod"] == cod2
+    assert productos_con_stock[1]["cod"] == cod3
 
     after_each()
+
+
+def main():
+    lista = [1,2,3]
+
+    if 1 in lista:
+        return "@funciona"
+
+
+
+main()
