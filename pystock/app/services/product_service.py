@@ -1,6 +1,7 @@
 from bson.objectid import ObjectId
 from flask import jsonify
 from pystock.app.config import MONGO_SERVICE
+from pystock.app.services.movements_service import total_amount_of
 
 products_collection = MONGO_SERVICE.get_products()
 
@@ -21,12 +22,12 @@ def insert_product(cod, name, price, desc):
                                                "price": price,
                                                "desc": desc})
     return ({
-        "id": str(response.inserted_id),
-        "cod": cod,
-        "name": name,
-        "price": price,
-        "desc": desc
-    }, 201)
+                "id": str(response.inserted_id),
+                "cod": cod,
+                "name": name,
+                "price": price,
+                "desc": desc
+            }, 201)
 
 
 def update_product(_id, cod, name, price, desc):
@@ -48,12 +49,12 @@ def update_product(_id, cod, name, price, desc):
         })
 
     return ({
-        "id": _id,
-        "cod": cod,
-        "name": name,
-        "price": price,
-        "desc": desc
-    }, 200)
+                "id": _id,
+                "cod": cod,
+                "name": name,
+                "price": price,
+                "desc": desc
+            }, 200)
 
 
 def get_by_cod(cod):
@@ -71,6 +72,17 @@ def get_products():
                 "desc": product["desc"],
                 "price": product["price"],
             })
+    return products
+
+
+def get_products_with_stock():
+    all_codes = get_all_codes()
+    products = []
+
+    for code in all_codes:
+        if total_amount_of(code) > 0:
+            products.append(get_by_cod(code))
+
     return products
 
 
