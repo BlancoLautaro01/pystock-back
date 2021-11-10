@@ -114,15 +114,16 @@ def test_get_products_with_stock():
     assert productos_con_stock[0]["cod"] == cod2
     assert productos_con_stock[1]["cod"] == cod3
 
+    set_movement(cod3, 101, False)
+    productos_con_stock = get_products_with_stock()
+    assert len(productos_con_stock) == 1
+    assert productos_con_stock[0]["cod"] == cod2
+
+    set_movement(cod2, 50, False)
+    productos_con_stock = get_products_with_stock()
+    assert len(productos_con_stock) == 0
+
+
     after_each()
 
 
-def main():
-    lista = [1,2,3]
-
-    if 1 in lista:
-        return "@funciona"
-
-
-
-main()
