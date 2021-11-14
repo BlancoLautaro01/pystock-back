@@ -1,5 +1,5 @@
 from flask import Flask
-
+from flask_cors import CORS
 from pystock.app.routes.user_controller import user_controller
 from pystock.app.routes.product_controller import product_controller
 from pystock.app.routes.stock_controller import stock_controller
@@ -8,6 +8,7 @@ from pystock.app.routes.report_controller import report_controller
 
 # App creation + Cors
 app = Flask(__name__)
+CORS(app)
 
 
 # Routes register
