@@ -87,7 +87,19 @@ def get_products_with_stock():
         if total_amount_of(code) > 0:
             products.append(get_by_cod(code))
 
-    return products
+    result = []
+
+    for product in products:
+        result.append(
+            {
+                "id": str(product["_id"]),
+                "cod": product["cod"],
+                "name": product["name"],
+                "desc": product["desc"],
+                "price": product["price"],
+            })
+
+    return result
 
 
 def get_all_codes():
