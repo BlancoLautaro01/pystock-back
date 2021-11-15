@@ -1,0 +1,19 @@
+from flask import Blueprint, jsonify, request
+from pystock.app.services.sales_service import *
+from pystock.app.config import API_KEY
+
+sales_controller = Blueprint('sales_controller', __name__)
+
+
+@sales_controller.route('/setVenta', methods=['POST'])
+def insert_a_sale():
+    auth = request.headers.get("X-Api-Key")
+    if auth != API_KEY:
+        return jsonify({"message": "ERROR: Unauthorized"}), 401
+
+    body = request.json
+    client = body["client"]
+    products = body["products"]
+
+    response = insert_sale(client, products)
+    return jsonify(response[0]), response[1]
