@@ -1,15 +1,17 @@
 import pytest
 
-from pystock.app.services.product_service import *
+from pystock.app.services.product_service import drop_products, product_exist, insert_product, update_product, get_products, get_by_cod, delete_product
+from pystock.app.services.movements_service import set_movement, drop_collection
+
 
 
 def before_each():
     drop_products()
-
+    drop_collection()
 
 def after_each():
     drop_products()
-
+    drop_collection()
 
 def test_product_exist():
     before_each()
@@ -81,3 +83,47 @@ def test_delete_product():
     delete_product(product[0]["id"])
     assert not product_exist("COD1")
     after_each()
+
+
+def test_get_products_with_stock():
+    before_each()
+    from pystock.app.services.product_service import get_products_with_stock
+
+    #preparacion
+    cod1 = "cod001"
+    cod2 = "cod011"
+    cod3 = "cod563"
+    producto1 = insert_product(cod1, "nombre1", 100, "desc1")
+    producto2 = insert_product(cod2, "nombre2", 100, "desc2")
+    producto3 = insert_product(cod3, "nombre3", 100, "desc3")
+
+    #ingreso stock para los 3 productos
+    set_movement(cod1, 100, True)
+    set_movement(cod2, 100, True)
+    set_movement(cod3, 100, True)
+
+    #saco stock para para vaciar el stock de 1 producto, dejar parcialmente vacio otro
+    set_movement(cod1, 100, False)
+    set_movement(cod2, 50, False)
+    set_movement(cod3, 1, True)
+
+    productos_con_stock = get_products_with_stock()
+
+
+    assert len(productos_con_stock) == 2
+    assert productos_con_stock[0]["cod"] == cod2
+    assert productos_con_stock[1]["cod"] == cod3
+
+    set_movement(cod3, 101, False)
+    productos_con_stock = get_products_with_stock()
+    assert len(productos_con_stock) == 1
+    assert productos_con_stock[0]["cod"] == cod2
+
+    set_movement(cod2, 50, False)
+    productos_con_stock = get_products_with_stock()
+    assert len(productos_con_stock) == 0
+
+
+    after_each()
+
+
