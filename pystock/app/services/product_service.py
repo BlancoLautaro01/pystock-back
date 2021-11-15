@@ -1,7 +1,5 @@
 from bson.objectid import ObjectId
-from flask import jsonify
 from pystock.app.config import MONGO_SERVICE
-
 
 
 products_collection = MONGO_SERVICE.get_products()

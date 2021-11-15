@@ -1,5 +1,3 @@
-from bson.objectid import ObjectId
-from pystock.app.config import MONGO_SERVICE
 from pystock.app.services.movements_service import *
 from pystock.app.services.product_service import *
 import datetime

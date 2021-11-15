@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request, jsonify
 from pystock.app.services.product_service import *
 from pystock.app.config import API_KEY
 
