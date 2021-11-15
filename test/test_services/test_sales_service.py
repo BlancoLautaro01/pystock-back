@@ -17,10 +17,11 @@ def after_each():
 
 
 def test_insert_sale_with_one_product():
+    after_each()
     before_each()
     client = "Marcelo"
     products = [{
-        "cod": "COD1",
+        "product": {"cod": "COD1", "name": "NOMBRE1"},
         "amount": "1"
     }]
     assert len(get_sales()[0]) == 0
@@ -44,11 +45,11 @@ def test_insert_sale_with_two_products():
     client = "Marcelo"
     products = [
         {
-            "cod": "COD1",
+            "product": {"cod": "COD1", "name": "NOMBRE1"},
             "amount": "1"
         },
         {
-            "cod": "COD2",
+            "product": {"cod": "COD2", "name": "NOMBRE2"},
             "amount": "2"
         }
     ]
@@ -71,7 +72,7 @@ def test_insert_sale_with_stock_greater_than_available():
     before_each()
     client = "Marcelo"
     products = [{
-        "cod": "COD1",
+        "product": {"cod": "COD1", "name": "NOMBRE1"},
         "amount": "100"
     }]
     assert len(get_sales()[0]) == 0
@@ -88,7 +89,7 @@ def test_insert_sale_with_amount_zero():
     before_each()
     client = "Marcelo"
     products = [{
-        "cod": "COD1",
+        "product": {"cod": "COD1", "name": "NOMBRE1"},
         "amount": "0"
     }]
     assert len(get_sales()[0]) == 0
@@ -105,7 +106,7 @@ def test_insert_sale_with_negative_amount():
     before_each()
     client = "Marcelo"
     products = [{
-        "cod": "COD1",
+        "product": {"cod": "COD1", "name": "NOMBRE1"},
         "amount": "-10"
     }]
     assert len(get_sales()[0]) == 0
@@ -123,12 +124,12 @@ def test_insert_sale_with_same_product_multiple_times():
     client = "Marcelo"
     products = [
         {
-            "cod": "COD1",
-            "amount": "1"
+            "product": {"cod": "COD1", "name": "NOMBRE1"},
+            "amount": "5"
         },
         {
-            "cod": "COD1",
-            "amount": "2"
+            "product": {"cod": "COD1", "name": "NOMBRE1"},
+            "amount": "5"
         }
     ]
     assert len(get_sales()[0]) == 0

@@ -14,6 +14,7 @@ def after_each():
 
 
 def test_set_movement():
+    after_each()
     before_each()
 
     assert len(get_all_movements()) == 0
@@ -40,6 +41,7 @@ def test_set_movement():
 
 
 def test_set_movement_string_amount():
+    after_each()
     before_each()
 
     movement = set_movement("COD1", "amount", True)
@@ -62,6 +64,7 @@ def test_set_movement_unexisting_product_cod():
 
 
 def test_set_movement_amount_less_than_one():
+    after_each()
     before_each()
 
     movement0 = set_movement("COD1", 0, True)
@@ -77,6 +80,7 @@ def test_set_movement_amount_less_than_one():
 
 
 def test_set_movement_out_leaving_negative_stock():
+    after_each()
     before_each()
 
     movement = set_movement("COD1", 10, False)
@@ -98,6 +102,7 @@ def test_set_movement_out_leaving_negative_stock():
 
 
 def test_exists_movement_of():
+    after_each()
     before_each()
 
     set_movement("COD1", 50, True)
@@ -109,6 +114,7 @@ def test_exists_movement_of():
 
 
 def test_delete_movement():
+    after_each()
     before_each()
 
     movement = set_movement("COD1", 50, True)

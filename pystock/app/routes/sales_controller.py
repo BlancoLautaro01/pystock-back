@@ -11,8 +11,7 @@ def insert_a_sale(client):
     if auth != API_KEY:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
 
-    body = request.json
-    products = body["products"]
+    products = request.json
 
     response = insert_sale(client, products)
     return jsonify(response[0]), response[1]
