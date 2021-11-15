@@ -11,7 +11,6 @@ from pystock.app.routes.sales_controller import sales_controller
 app = Flask(__name__)
 CORS(app)
 
-
 # Routes register
 app.register_blueprint(user_controller)
 app.register_blueprint(product_controller)
