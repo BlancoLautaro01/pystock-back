@@ -17,3 +17,14 @@ def insert_a_sale():
 
     response = insert_sale(client, products)
     return jsonify(response[0]), response[1]
+
+
+@sales_controller.route('/getVentas', methods=['GET'])
+def get_all_sales():
+    auth = request.headers.get("X-Api-Key")
+    if auth != API_KEY:
+        return jsonify({"message": "ERROR: Unauthorized"}), 401
+
+
+    response = get_sales()
+    return jsonify(response[0]), response[1]

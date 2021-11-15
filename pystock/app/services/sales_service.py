@@ -25,5 +25,18 @@ def insert_sale(client, products):
     return {'message': 'Success'}, 200
 
 
+def get_sales():
+    sales = []
+    for sale in sales_collection.find({}):
+        sales.append(
+            {
+                "id": str(sale["_id"]),
+                "client": sale["client"],
+                "products": sale["products"],
+                "price": sale["price"],
+            })
+    return sales, 200
+
+
 def drop_sales():
     sales_collection.drop()
