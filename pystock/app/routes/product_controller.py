@@ -57,3 +57,12 @@ def delete_a_product(product_id):
 
     delete_product(product_id)
     return "Deleted", 204
+
+
+@product_controller.route('/getProductsWithStock')
+def products_with_stock():
+    auth = request.headers.get("X-Api-Key")
+    if auth != API_KEY:
+        return jsonify({"message": "ERROR: Unauthorized"}), 401
+
+    return jsonify(get_products_with_stock()), 200
