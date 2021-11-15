@@ -1,0 +1,307 @@
+{
+	"info": {
+		"_postman_id": "a8ed1bb0-fa87-4fd0-95eb-052318fe3a0c",
+		"name": "PyStock",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@pystock.com\",\n    \"password\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:4000/login"
+					},
+					"response": []
+				},
+				{
+					"name": "getUsers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "60e419fd-344b-4f76-9dbe-0830b8e02fde",
+								"type": "text"
+							}
+						],
+						"url": "localhost:4000/getUsers"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser/<IDUser>",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "60e419fd-344b-4f76-9dbe-0830b8e02fde",
+								"type": "text"
+							}
+						],
+						"url": "localhost:4000/deleteUser/6180562655524542ff9a702c"
+					},
+					"response": []
+				},
+				{
+					"name": "setUser",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "60e419fd-344b-4f76-9dbe-0830b8e02fde",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"Lautaro@pystock.com\",\n    \"password\": 1234\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:4000/setUser"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "getProducts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "60e419fd-344b-4f76-9dbe-0830b8e02fde",
+								"type": "text"
+							}
+						],
+						"url": "localhost:4000/getProducts"
+					},
+					"response": []
+				},
+				{
+					"name": "getProductsWithStock",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "60e419fd-344b-4f76-9dbe-0830b8e02fde",
+								"type": "text"
+							}
+						],
+						"url": "localhost:4000/getProductsWithStock"
+					},
+					"response": []
+				},
+				{
+					"name": "setProduct",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "60e419fd-344b-4f76-9dbe-0830b8e02fde",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cod\": \"COD5\",\n    \"name\": \"Pencil\",\n    \"desc\": \"Black Pen\",\n    \"price\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:4000/setProduct"
+					},
+					"response": []
+				},
+				{
+					"name": "editProduct/<IDProduct>",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "60e419fd-344b-4f76-9dbe-0830b8e02fde",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cod\": \"COD5\",\n    \"name\": \"Penasdasdasda\",\n    \"desc\": \"Black Pen\",\n    \"price\": 50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:4000/editProduct/618057234dfdd2309700d62d"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduct/<IDProduct>",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "60e419fd-344b-4f76-9dbe-0830b8e02fde",
+								"type": "text"
+							}
+						],
+						"url": "localhost:4000/deleteProduct/6180563055524542ff9a702d"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Stock",
+			"item": [
+				{
+					"name": "getMovements",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "60e419fd-344b-4f76-9dbe-0830b8e02fde",
+								"type": "text"
+							}
+						],
+						"url": "localhost:4000/getMovements"
+					},
+					"response": []
+				},
+				{
+					"name": "setMovement",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "60e419fd-344b-4f76-9dbe-0830b8e02fde",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cod\": \"COD2\",\n    \"amount\": 5,\n    \"type\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:4000/setMovement"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteMovement/<IDMovement>",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "60e419fd-344b-4f76-9dbe-0830b8e02fde",
+								"type": "text"
+							}
+						],
+						"url": "localhost:4000/deleteMovement/6180577a9aa11478b7edd98b"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Report",
+			"item": [
+				{
+					"name": "getReport",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "60e419fd-344b-4f76-9dbe-0830b8e02fde",
+								"type": "text"
+							}
+						],
+						"url": "localhost:4000/getReport"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ventas",
+			"item": [
+				{
+					"name": "setVenta/{Client}",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "60e419fd-344b-4f76-9dbe-0830b8e02fde",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n    \"product\": { \"cod\": \"COD1\", \"name\": \"Lautaro\" },\n    \"amount\": 20\n  }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:4000/setVenta/Martin"
+					},
+					"response": []
+				},
+				{
+					"name": "getVentas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "60e419fd-344b-4f76-9dbe-0830b8e02fde",
+								"type": "text"
+							}
+						],
+						"url": "localhost:4000/getVentas"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
